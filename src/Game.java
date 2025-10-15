@@ -2,6 +2,18 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
+
+    public Game() {
+        Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó található.");
+        Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó.");
+        Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon.");
+
+        entrance.setExit(Direction.ÉSZAK, hall);
+        hall.setExit(Direction.DÉL, entrance);
+        hall.setExit(Direction.NYUGAT, armory);
+        armory.setExit(Direction.KELET, hall);
+    }
+
     public static void main(String[] args) {
         // git remote add origin URL
         // git remote add origin https://github.com/NemethBalintMark/worldofbalint.git
