@@ -27,4 +27,8 @@ public class Scene {
     public Scene getExit(Direction direction) {
         return exits.get(direction);
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Game {
 
+    Player player;
+
     public Game() {
         Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó található.");
         Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó.");
@@ -12,6 +14,8 @@ public class Game {
         hall.setExit(Direction.DÉL, entrance);
         hall.setExit(Direction.NYUGAT, armory);
         armory.setExit(Direction.KELET, hall);
+
+        player = new Player(entrance);
     }
 
     public static void main(String[] args) {
@@ -26,6 +30,7 @@ public class Game {
     private void play() {
         Scanner scanner = new Scanner(System.in);
         display("Üdv a várkalandban!");
+        display(player.getScene().getDescription());
 
         while (true) {
             String input = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
