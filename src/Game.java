@@ -70,8 +70,11 @@ public class Game {
             display("Nem mehetsz arra!");
             return;
         }
+        else {
+            player.setCurrentScene(nextScene);
+        }
 
-        player.setCurrentScene(nextScene);
+
     }
 
     private void display(String message) {
