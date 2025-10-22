@@ -40,9 +40,7 @@ public class Game {
             display.display(">");
             //scaner nextLine() mindig egy teljes sort olvas be
 
-            String input = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
-
-            String[] words = input.split(" ");
+            String[] words = getInputTokenized(scanner);
             String command = words[0];
 
             // Ha van 2. szó itt kinyerjük egy ternary operátorral -> ugyanaz, mint egy if-then, csak tömör
@@ -64,6 +62,13 @@ public class Game {
                     break;
             }
         }
+    }
+
+    private static String[] getInputTokenized(Scanner scanner) {
+        String input = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
+
+        String[] words = input.split(" ");
+        return words;
     }
 
     private void movePlayer(Direction direction) {
