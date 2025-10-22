@@ -4,8 +4,11 @@ import java.util.Scanner;
 public class Game {
 
     Player player;
+    private Display display;
 
     public Game() {
+        display = new ConsoleDisplay();
+
         Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó található.");
         Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó.");
         Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon.");
@@ -29,12 +32,12 @@ public class Game {
 
     private void play() {
         Scanner scanner = new Scanner(System.in);
-        display("Üdv a várkalandban!");
+        display.display("Üdv a várkalandban!");
 
         while (true) {
-            display("------------------------------");
-            display(player.getCurrentScene().getDescription());
-            display(">");
+            display.display("------------------------------");
+            display.display(player.getCurrentScene().getDescription());
+            display.display(">");
             //scaner nextLine() mindig egy teljes sort olvas be
 
             String input = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
@@ -52,12 +55,12 @@ public class Game {
                     break; // ha nincs break, akkor tovább menne a következő ágra, szóval kötelezően kell
 
                 case "kilép":
-                    display("Köszi a játékot!");
+                    display.display("Köszi a játékot!");
                     scanner.close();
                     return;
 
                 default:
-                    display("Nem értem a parancsot!");
+                    display.display("Nem értem a parancsot!");
                     break;
             }
         }
@@ -67,7 +70,7 @@ public class Game {
         Scene nextScene = player.getCurrentScene().getExit(direction);
 
         if (nextScene == null) {
-            display("Nem mehetsz arra!");
+            display.display("Nem mehetsz arra!");
             return;
         }
         else {
@@ -77,7 +80,9 @@ public class Game {
 
     }
 
-    private void display(String message) {
+    /*
+     private void display(String message) {
         System.out.println(message);
     }
+    */
 }
